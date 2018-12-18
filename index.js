@@ -1,5 +1,11 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json());
+
 const posts = [
     {
         title:  "lorem ipsum1",
@@ -22,4 +28,19 @@ app.get('/posts', function(req, res) {
     return res.send(posts);
 });
 
+app.get('/posts/:id', function(req, res) {
+    const id = req.params.id;
+    res.send(posts[id]);
+});
+
+app.post('/posts', function(req, res) {
+    // получаем данные из тела запроса и сохраняем в конст.
+    const data = req.body;
+    // посмотрим что у нас там? 
+    console.log(data);
+    // добавляем полученные данные к постам
+    posts.push(data);
+    // чтобы не было бесконечного цикла - вернем все посты на страницу
+    return res.send(posts);
+});
 app.listen(3000, ()=>console.log('Server running on 3000 port'));
