@@ -1,3 +1,5 @@
+"use strict";
+
 // const mongoose = require('mongoose');
 // mongoose.connect('mongodb://localhost/server-side');
 
@@ -6,8 +8,10 @@
 // const kitty = new Cat({ name: 'Zildjian' });
 // kitty.save().then(() => console.log('meow'));
 
-const arr = [1, 2, 3, 4, 5, 6];
-const result = arr.map(el => el * 3);
+var arr = [1, 2, 3, 4, 5, 6];
+var result = arr.map(function (el) {
+  return el * 3;
+});
 console.log(result);
 // const express = require('express');
 // const bodyParser = require('body-parser');
