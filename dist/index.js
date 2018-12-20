@@ -38,6 +38,15 @@ app.post('/posts', function (req, res) {
     });
 });
 
+app.get('/posts', function (req, res) {
+    _Post2.default.find().then(function (err, posts) {
+        if (err) {
+            res.send(err);
+        }
+        res.json(posts);
+    });
+});
+
 app.listen(3000, function () {
     return console.log("Server running on 3000 port");
 });

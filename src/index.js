@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import express from 'express';
 import bodyParser from 'body-parser';
 import PostModel from './models/Post';
-
+import Post from './models/Post';
 const app = express();
 
 mongoose.connect('mongodb://localhost/server-side');
@@ -20,6 +20,15 @@ app.post('/posts', (req, res) => {
 
     post.save().then(() => {
         res.send({ status: "OK"});
+    });
+});
+
+app.get('/posts', (req, res) => {
+    Post.find().then((err, posts) => {
+        if(err){
+            res.send(err);
+        }
+        res.json(posts);
     });
 });
 
