@@ -47,6 +47,18 @@ app.get('/posts', function (req, res) {
     });
 });
 
+app.delete('/posts/:id', function (req, res) {
+    _Post2.default.remove({
+        _id: req.params.id
+    }).then(function (post) {
+        if (post) {
+            res.json({ status: "deleted" });
+        } else {
+            res.json({ status: "error" });
+        }
+    });
+});
+
 app.listen(3000, function () {
     return console.log("Server running on 3000 port");
 });
