@@ -59,6 +59,15 @@ app.delete('/posts/:id', function (req, res) {
     });
 });
 
+app.put('/posts/:id', function (req, res) {
+    _Post2.default.findByIdAndUpdate(req.params.id, { $set: req.body }, function (err) {
+        if (err) {
+            res.send(err);
+        }
+        res.json({ status: "update" });
+    });
+});
+
 app.listen(3000, function () {
     return console.log("Server running on 3000 port");
 });
